@@ -1,0 +1,379 @@
+/*
+ * ============================================================
+ * SPS SHOWROOM TECH — CUSTOM THEME v3
+ * ============================================================
+ *
+ * Inspirado en la identidad visual de SPS Showroom.
+ *
+ * Compatible con la estructura de Open WebUI comprobada
+ * durante la personalización.
+ *
+ * No modifica el nombre, logotipo ni favicon de Open WebUI.
+ *
+ * Modos:
+ * - Light: yeso + tinta + verde petróleo
+ * - Dark: tinta + verde profundo + superficies elevadas
+ *
+ * Acentos: terracota y ocre.
+ * ============================================================
+ */
+
+
+/* ============================================================
+   01. DESIGN TOKENS
+   ============================================================ */
+
+:root {
+    /* Colores corporativos */
+    --sps-yeso: #eaefec;
+    --sps-tinta: #1f2a2c;
+    --sps-verde: #2c6970;
+    --sps-verde-profundo: #1e4a50;
+    --sps-terracota: #c4422a;
+    --sps-terracota-hover: #a93922;
+    --sps-ocre: #cfad48;
+
+    /* Tipografía */
+    --sps-font-family:
+        "Public Sans",
+        "Segoe UI",
+        system-ui,
+        sans-serif;
+
+    /* Light mode */
+    --sps-light-bg: #eaefec;
+    --sps-light-surface: #ffffff;
+    --sps-light-surface-hover: #f4f7f5;
+    --sps-light-text: #1f2a2c;
+    --sps-light-text-muted: #4a5759;
+    --sps-light-border: #c3ccc8;
+
+    /* Dark mode */
+    --sps-dark-bg: #172224;
+    --sps-dark-surface: #26383a;
+    --sps-dark-surface-hover: #304649;
+    --sps-dark-text: #f1f7f5;
+    --sps-dark-text-muted: #b9cbc8;
+    --sps-dark-border: #3b5558;
+
+    /* Sidebar — ambos modos */
+    --sps-sidebar-bg: #1f2a2c;
+    --sps-sidebar-text: #f1f7f5;
+    --sps-sidebar-muted: #c3d0cc;
+    --sps-sidebar-hover: #2b4143;
+
+    /* Interacciones */
+    --sps-action-primary: #2c6970;
+    --sps-action-primary-hover: #1e4a50;
+    --sps-action-highlight: #8ed1cc;
+
+    /* Acabados */
+    --sps-radius-md: 12px;
+    --sps-radius-lg: 16px;
+    --sps-radius-xl: 20px;
+
+    --sps-shadow-light:
+        0 8px 24px rgba(31, 42, 44, 0.07);
+
+    --sps-shadow-dark:
+        0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ============================================================
+   02. GLOBAL — TYPOGRAPHY
+   ============================================================ */
+
+html body {
+    font-family: var(--sps-font-family);
+}
+
+
+/* ============================================================
+   03. LIGHT MODE — BACKGROUND
+   ============================================================ */
+
+html.light body,
+html:not(.dark) body {
+    background-color: var(--sps-light-bg);
+    color: var(--sps-light-text);
+}
+
+html.light div.bg-white:has(#chat-container) {
+    background-color: var(--sps-light-bg);
+}
+
+
+/* ============================================================
+   04. DARK MODE — BACKGROUND
+   ============================================================ */
+
+html.dark body {
+    background-color: var(--sps-dark-bg);
+    color: var(--sps-dark-text);
+}
+
+html.dark div.bg-white:has(#chat-container) {
+    background-color: var(--sps-dark-bg);
+}
+
+
+/* ============================================================
+   05. SIDEBAR — BOTH MODES
+   ============================================================ */
+
+html.light #sidebar,
+html.dark #sidebar {
+    background-color: var(--sps-sidebar-bg);
+    color: var(--sps-sidebar-text);
+
+    border-right:
+        1px solid rgba(195, 208, 204, 0.12);
+}
+
+/*
+ * Mantener contraste para los textos que heredan
+ * el color del contenedor.
+ *
+ * No sobrescribimos indiscriminadamente los colores
+ * de todos los iconos y botones internos.
+ */
+
+html.light #sidebar a,
+html.dark #sidebar a {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* ============================================================
+   06. LIGHT MODE — MESSAGE INPUT
+   ============================================================ */
+
+html.light #message-input-container {
+    background-color: var(--sps-light-surface);
+
+    border:
+        1px solid var(--sps-light-border);
+
+    border-radius: var(--sps-radius-xl);
+
+    box-shadow: var(--sps-shadow-light);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+html.light #message-input-container:hover {
+    border-color: var(--sps-verde);
+}
+
+html.light #message-input-container:focus-within {
+    border-color: var(--sps-verde);
+
+    box-shadow:
+        0 0 0 3px rgba(44, 105, 112, 0.12),
+        var(--sps-shadow-light);
+}
+
+html.light #chat-input {
+    color: var(--sps-light-text);
+    font-family: var(--sps-font-family);
+}
+
+
+/* ============================================================
+   07. DARK MODE — MESSAGE INPUT
+   ============================================================ */
+
+html.dark #message-input-container {
+    background-color: var(--sps-dark-surface);
+
+    border:
+        1px solid var(--sps-dark-border);
+
+    border-radius: var(--sps-radius-xl);
+
+    box-shadow: var(--sps-shadow-dark);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+html.dark #message-input-container:hover {
+    background-color: var(--sps-dark-surface-hover);
+    border-color: var(--sps-verde);
+}
+
+html.dark #message-input-container:focus-within {
+    border-color: var(--sps-action-highlight);
+
+    box-shadow:
+        0 0 0 3px rgba(142, 209, 204, 0.12),
+        var(--sps-shadow-dark);
+}
+
+html.dark #chat-input {
+    color: var(--sps-dark-text);
+    font-family: var(--sps-font-family);
+}
+
+
+/* ============================================================
+   08. SEND BUTTON — BOTH MODES
+   ============================================================ */
+
+/*
+ * Terracota como acento principal del envío.
+ * No altera el estado deshabilitado.
+ */
+
+html.light #send-message-button:not(:disabled),
+html.dark #send-message-button:not(:disabled) {
+    background-color: var(--sps-terracota);
+    color: #ffffff;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+html.light #send-message-button:not(:disabled):hover,
+html.dark #send-message-button:not(:disabled):hover {
+    background-color: var(--sps-terracota-hover);
+
+    box-shadow:
+        0 4px 12px rgba(196, 66, 42, 0.22);
+}
+
+html.light #send-message-button:focus-visible,
+html.dark #send-message-button:focus-visible {
+    outline: 2px solid var(--sps-ocre);
+    outline-offset: 3px;
+}
+
+
+/* ============================================================
+   09. CHAT INPUT — PLACEHOLDER
+   ============================================================ */
+
+html.light #chat-input[data-placeholder]:empty::before {
+    color: var(--sps-light-text-muted);
+}
+
+html.dark #chat-input[data-placeholder]:empty::before {
+    color: var(--sps-dark-text-muted);
+}
+
+
+/* ============================================================
+   10. TEXT SELECTION
+   ============================================================ */
+
+html.light ::selection {
+    background-color: rgba(44, 105, 112, 0.22);
+    color: var(--sps-tinta);
+}
+
+html.dark ::selection {
+    background-color: rgba(142, 209, 204, 0.28);
+    color: var(--sps-dark-text);
+}
+
+
+/* ============================================================
+   11. ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #sidebar a,
+    #message-input-container,
+    #send-message-button {
+        transition: none;
+    }
+}
+
+/*
+ * SPS Showroom — Contraste de la barra lateral
+ * Corrige textos e iconos oscuros sobre fondo tinta.
+ */
+
+html.light #sidebar,
+html.dark #sidebar {
+    color: var(--sps-sidebar-text);
+}
+
+/* Textos y elementos de navegación */
+html.light #sidebar :is(a,
+    button,
+    .text-gray-600,
+    .text-gray-700,
+    .text-gray-800,
+    .text-gray-900) {
+    color: var(--sps-sidebar-text);
+}
+
+/* Iconos que utilizan currentColor */
+html.light #sidebar svg {
+    color: inherit;
+}
+
+/* Textos secundarios */
+html.light #sidebar .text-gray-500 {
+    color: var(--sps-sidebar-muted);
+}
+
+/*
+ * ============================================================
+ * SPS SHOWROOM — SIDEBAR GRADIENTS
+ * ============================================================
+ *
+ * Sustituye los degradados originales de Open WebUI
+ * por degradados basados en el color tinta de SPS.
+ *
+ * Compatible con modo claro y oscuro.
+ */
+
+html.light #sidebar .sidebar-bg-gradient-to-t,
+html.dark #sidebar .sidebar-bg-gradient-to-t {
+    background-image: linear-gradient(to top,
+            var(--sps-sidebar-bg) 50%,
+            transparent 100%);
+}
+
+html.light #sidebar .sidebar-bg-gradient-to-b,
+html.dark #sidebar .sidebar-bg-gradient-to-b {
+    background-image: linear-gradient(to bottom,
+            var(--sps-sidebar-bg) 50%,
+            transparent 100%);
+}
+
+/*
+ * ============================================================
+ * SPS SHOWROOM — SIDEBAR HOVER
+ * ============================================================
+ *
+ * Unifica los estados hover en modo claro y oscuro.
+ */
+
+/* Elementos interactivos de la barra lateral */
+html.light #sidebar a:hover,
+html.dark #sidebar a:hover,
+html.light #sidebar button:hover,
+html.dark #sidebar button:hover {
+    background-color: var(--sps-sidebar-hover);
+    color: var(--sps-sidebar-text);
+}
+
+/* Mantener los iconos visibles durante el hover */
+html.light #sidebar a:hover svg,
+html.dark #sidebar a:hover svg,
+html.light #sidebar button:hover svg,
+html.dark #sidebar button:hover svg {
+    color: inherit;
+}
